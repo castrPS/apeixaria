@@ -1,0 +1,34 @@
+#body{
+  width: 88vw;
+}
+#title{
+  text-align: center;
+}
+
+#divSemPendentes, #divSemHistorico{
+  width: 88vw;
+}
+#semPendentes,#semHistorico{
+  text-align: center;
+}
+
+#tabelaPendentes{
+  width: 80%;
+  margin: 10%;
+  padding: 0;
+  border: solid 1px;
+  background-color: #0f82c1;
+}
+
+#tabelaPendentes th{
+  color: #fefefe;;
+}
+
+#tabelaPendentes td{
+  width: 80%;
+  margin: 10%;
+  padding: 0;
+  border: solid 1px;
+  background-color: #fefefe;
+  text-align: center;
+}

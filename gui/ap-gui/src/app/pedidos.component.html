@@ -1,0 +1,51 @@
+<div id="body">
+
+   <h1 id="title">Pedidos Pendentes</h1>
+
+   <div *ngIf="filterPendentes().length == 0" id="divSemPendentes">
+      <h1 id="semPendentes">Não há pedidos pendentes</h1>
+   </div>
+
+   <table id="tabelaPendentes">
+   <tr *ngIf="filterPendentes().length > 0">
+      <th>Cliente</th>
+      <th>Data do Pedido</th>
+      <th>Data de Entrega</th>
+      <th>Entregue</th>
+      <th>Pago</th>
+   </tr>
+   <tr *ngFor="let p of filterPendentes()">
+      <td name="client">{{p.cliente.nome}}</td>
+      <td name="requestDate">{{p.dataPedido}</td>
+      <td name="deliverDate">{{p.dataEntrega}}</td>
+      <td class="entregue" name="delivered"><input type="checkbox"[(ngModel)]="p.entregue" (change)="atualizarPedido(a)"></td>
+      <td class="pago" name="paid"><input type="checkbox"[(ngModel)]="p.pago" (change)="atualizarPedido(a)"></td>
+      <td class="visualizar"><button>Visualizar</button> </td>
+      <td class="cancelar" name="cancel"><button>Cancelar</button> </td>
+   </tr>
+   </table>
+
+   <div *ngIf="filterHistorico().length == 0" id="divSemHistorico">
+      <h1 id="semHistorico">Não há pedidos no histórico</h1>
+   </div>
+
+   <table id="tabelaPendentes">
+   <tr *ngIf="filterPendentes().length > 0">
+      <th>Cliente</th>
+      <th>Data de Entrega</th>
+      <th>Entregue e Pago?</th>
+      <th>Cancelado?</th>
+   </tr>
+   <tr *ngFor="let p of filterHistorico()">
+      <td name="client">{{p.cliente.nome}}</td>
+      <td name="deliverDate">{{p.dataEntrega}}</td>
+      <td *ngIf="p.entregue&&p.pago">Sim</td>
+      <td *ngIf="!p.entregue||!p.pago">Não</td>
+      <td *ngIf="p.cancelado">Sim</td>
+      <td *ngIf="!p.cancelado">Não</td>
+      <td class="visualizar" name="visualizar"><button>Visualizar</button></td>
+      <td class="restaurar" name="restaurar"><button>Restaurar</button></td>
+   </tr>
+   </table>
+
+</div>

@@ -1,7 +1,12 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
+import {Pedido} from '../../gui/ap-gui/src/app/pedido';
+import {CadastroDePedidos} from './CadastroDePedidos';
+
 var app = express();
+
+var cadastroPedidos: CadastroDePedidos = new CadastroDePedidos();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -13,7 +18,29 @@ app.use(allowCrossDomain);
 
 app.use(bodyParser.json());
 
-/** Aqui virá as requisições que serão feitas ao servidor*/
+app.get('/pedidos', function (req, res) {
+  res.send(JSON.stringify(cadastroPedidos.getPedidos()));
+})
+
+app.post('/pedidos', function (req: express.Request, res: express.Response) {
+  var pedido: Pedido= <Pedido> req.body;
+  pedido = cadastroPedidos.criar(pedido);
+  if (pedido) {
+    res.send({"success": "O aluno foi cadastrado com sucesso"});
+  } else {
+    res.send({"failure": "O aluno não pode ser cadastrado"});
+  }
+})
+
+app.put('/ṕedidos', function (req: express.Request, res: express.Response) {
+  var pedido: Pedido = <Pedido> req.body;
+  pedido = cadastro.atualizar(pedido);
+  if (pedido) {
+    res.send({"success": "O aluno foi atualizado com sucesso"});
+  } else {
+    res.send({"failure": "O aluno não pode ser atualizado"});
+  }
+})
 
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
