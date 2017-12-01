@@ -9,8 +9,8 @@ export class Pedido {
   valorTotal: number;
   desconto: number;
   tipoDesconto: string;
-  dataPedido: Date;
-  dataEntrega: Date;
+  dataPedido: string;
+  dataEntrega: string;
   condicaoPagamento: string;
   localRetirada: string;
   cancelado: boolean;
@@ -28,8 +28,8 @@ export class Pedido {
     this.valorTotal = 0;
     this.desconto =0;
     this.tipoDesconto = "";
-    this.dataPedido = new Date();
-    this.dataEntrega = new Date();
+    this.dataPedido = "";
+    this.dataEntrega = "";
     this.condicaoPagamento = "";
     this.localRetirada = "";
     this.cancelado = false;
@@ -61,8 +61,11 @@ export class Pedido {
 
   copyListaFrom(from: ItemDeCompra[]): void {
     this.lista = [];
-    for (var i=0; i<from.length;i++){
-      this.lista[i] = from[i];
+    if(from){
+      for (var i=0; i<from.length;i++){
+        this.lista[i] = from[i];
+      }
     }
   }
 }
+
