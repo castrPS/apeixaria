@@ -26,19 +26,19 @@ app.post('/pedidos', function (req: express.Request, res: express.Response) {
   var pedido: Pedido= <Pedido> req.body;
   pedido = cadastroPedidos.criar(pedido);
   if (pedido) {
-    res.send({"success": "O aluno foi cadastrado com sucesso"});
+    res.send({"success": "O pedido foi cadastrado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser cadastrado"});
+    res.send({"failure": "O pedido não pode ser cadastrado"});
   }
 })
 
-app.put('/ṕedidos', function (req: express.Request, res: express.Response) {
+app.put('/pedidos', function (req: express.Request, res: express.Response) {
   var pedido: Pedido = <Pedido> req.body;
-  pedido = cadastro.atualizar(pedido);
+  pedido = cadastroPedidos.atualizar(pedido);
   if (pedido) {
-    res.send({"success": "O aluno foi atualizado com sucesso"});
+    res.send({"success": "O pedido foi atualizado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser atualizado"});
+    res.send({"failure": "O pedido não pode ser atualizado"});
   }
 })
 

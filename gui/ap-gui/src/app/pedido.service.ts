@@ -13,7 +13,7 @@ export class PedidoService {
   constructor(private http: Http) { }
 
   criar(pedido: Pedido): Promise<Pedido> {
-    return this.http.post(this.taURL + "/pedido",JSON.stringify(pedido), {headers: this.headers})
+    return this.http.post(this.taURL + "/pedidos",JSON.stringify(pedido), {headers: this.headers})
            .toPromise()
            .then(res => {
               if (res.json().success) {return pedido;} else {return null;}
@@ -22,7 +22,7 @@ export class PedidoService {
   }
 
   atualizar(pedido: Pedido): Promise<Pedido> {
-    return this.http.put(this.taURL + "/pedido",JSON.stringify(pedido), {headers: this.headers})
+    return this.http.put(this.taURL + "/pedidos",JSON.stringify(pedido), {headers: this.headers})
          .toPromise()
          .then(res => {
             if (res.json().success) {return pedido;} else {return null;}
