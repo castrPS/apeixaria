@@ -25,8 +25,8 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("a[name='pedidos']").click();
     })
 
-    Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)"$/, async (code, client) => {
-        var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false}, json: true};
+    Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" com data de pedido "([^\"]*)" e data de entrega "([^\"]*)"$/, async (code, client, pedido, entrega) => {
+        var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false, "dataPedido": pedido, "dataEntrega":entrega}, json: true};
         request(options);
         request.post("localhost:3000/pedidos", );
     });
@@ -83,6 +83,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
+    Then(/^eu vejo o pedido "(\d*)" na lista de pedidos pendentes com atraso$/, async (code) => {
+        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        await all;
+        var samecode = all.filter((elem => sameCode(elem,code)));
+        await samecode.first().$("td[class='outdated']").then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
     Then(/^eu nao vejo o pedido "(\d*)" na lista de pedidos pendentes$/, async (code) => {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
@@ -102,7 +109,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode;
-        samecode = all.filter((elem => sameText(elem,text)));
+        samecode = samecode.filter((elem => sameText(elem,text)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
