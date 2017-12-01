@@ -4,7 +4,8 @@ I want to ver os pedidos pendentes e marca-los como entregues, pagos ou cancela-
 So that eles permaneceram como pendentes ou serao enviados para historicos correspondentes aos seus determinados estados.
 
 Scenario: Marcando um pedido apenas como entregue
-Given eu estou na pagina de pedidos pendentes
+Given eu tenho o pedido "1" cadastrado ao cliente "Paulo"
+And eu estou na pagina de pedidos pendentes
 And eu vejo o pedido "1" cadastrado ao cliente "Paulo" na lista de pendentes
 And o pedido "1" nao esta marcado como pago
 And o pedido "1" nao esta marcado como entregue
