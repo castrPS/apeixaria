@@ -13,11 +13,12 @@
 }
 
 #tabelaPendentes{
-  width: 80%;
-  margin: 10%;
+  width: 98%;
+  margin: 1%;
   padding: 0;
   border: solid 1px;
   background-color: #0f82c1;
+  table-layout: fixed; 
 }
 
 #tabelaPendentes th{

@@ -8,37 +8,43 @@
 
    <table id="tabelaPendentes">
    <tr *ngIf="filterPendentes().length > 0">
+      <th>Codigo</th>
       <th>Cliente</th>
       <th>Data do Pedido</th>
       <th>Data de Entrega</th>
       <th>Entregue</th>
       <th>Pago</th>
    </tr>
-   <tr *ngFor="let p of filterPendentes()">
+   <tr *ngFor="let p of filterPendentes()" name="pendentes">
+      <td name="code">{{p.codigo}}</td>
       <td name="client">{{p.cliente.nome}}</td>
-      <td name="requestDate">{{p.dataPedido}</td>
+      <td name="requestDate">{{p.dataPedido}}</td>
       <td name="deliverDate">{{p.dataEntrega}}</td>
-      <td class="entregue" name="delivered"><input type="checkbox"[(ngModel)]="p.entregue" (change)="atualizarPedido(a)"></td>
-      <td class="pago" name="paid"><input type="checkbox"[(ngModel)]="p.pago" (change)="atualizarPedido(a)"></td>
-      <td class="visualizar"><button>Visualizar</button> </td>
-      <td class="cancelar" name="cancel"><button>Cancelar</button> </td>
+      <td name="delivered" class={{p.entregue}} ><input type="checkbox"[(ngModel)]="p.entregue" (change)="atualizarPedido(p)"></td>
+      <td name="paid" class={{p.pago}}><input type="checkbox"[(ngModel)]="p.pago"  (change)="atualizarPedido(p)"></td>
+      <td><button>Visualizar</button> </td>
+      <td name="cancel"><button>Cancelar</button> </td>
    </tr>
    </table>
+
+   <h1 id="title">Pedidos Anteriores</h1>
 
    <div *ngIf="filterHistorico().length == 0" id="divSemHistorico">
       <h1 id="semHistorico">Não há pedidos no histórico</h1>
    </div>
 
    <table id="tabelaPendentes">
-   <tr *ngIf="filterPendentes().length > 0">
+   <tr *ngIf="filterHistorico().length > 0">
+      <th>Codigo</th>
       <th>Cliente</th>
-      <th>Data de Entrega</th>
+      <th>Data do Pedido</th>
       <th>Entregue e Pago?</th>
       <th>Cancelado?</th>
    </tr>
    <tr *ngFor="let p of filterHistorico()">
+      <td name="code">{{p.codigo}}</td>
       <td name="client">{{p.cliente.nome}}</td>
-      <td name="deliverDate">{{p.dataEntrega}}</td>
+      <td name="deliverDate">{{p.dataPedido}}</td>
       <td *ngIf="p.entregue&&p.pago">Sim</td>
       <td *ngIf="!p.entregue||!p.pago">Não</td>
       <td *ngIf="p.cancelado">Sim</td>

@@ -1,4 +1,3 @@
-
 import { CadastroDePedidos } from '../CadastroDePedidos';
 import { Pedido } from '../../../gui/ap-gui/src/app/pedido';
 import { Cliente } from '../../../gui/ap-gui/src/app/cliente';
@@ -20,8 +19,8 @@ describe("O cadastro de pedidos", () => {
     client.telefone="(81)98825";
     var pedido: Pedido = new Pedido();
     pedido.cliente = client;
-    pedido.dataPedido = new Date(2017,07,31);
-    pedido.dataEntrega = new Date(2018,01,01);
+    pedido.dataPedido = new Date(2017,7,31);
+    pedido.dataEntrega = new Date(2018,1,1);
     pedido.condicaoPagamento = "À vista";
     pedido.localRetirada = "Rua Professor Gabriel, 181";
     pedido.cancelado = false;
@@ -43,7 +42,7 @@ describe("O cadastro de pedidos", () => {
     expect(pedido.cliente.nome).toBe("Paulo");
     expect(pedido.codigo).toBe(1);
     expect(pedido.cliente.telefone).toBe("(81)98825");
-    expect(pedido.dataEntrega.toString()).toBe((new Date(2018,01,01)).toString);
+    expect(pedido.dataEntrega).toBe((new Date(2018,1,1)));
     expect(pedido.cancelado).toBe(false);
     expect(pedido.entregue).toBe(false);
     expect(pedido.pago).toBe(false);
