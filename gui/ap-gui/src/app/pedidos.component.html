@@ -31,7 +31,7 @@
       <h1 id="semHistorico">Não há pedidos no histórico</h1>
    </div>
 
-   <table id="tabelaPendentes">
+   <table id="tabelaHistorico">
    <tr *ngIf="filterHistorico().length > 0">
       <th>Codigo</th>
       <th>Cliente</th>
@@ -39,12 +39,12 @@
       <th>Entregue e Pago?</th>
       <th>Cancelado?</th>
    </tr>
-   <tr *ngFor="let p of filterHistorico()">
+   <tr *ngFor="let p of filterHistorico()" name="historicoLista">
       <td name="code">{{p.codigo}}</td>
       <td name="client">{{p.cliente.nome}}</td>
       <td name="deliverDate">{{p.dataPedido}}</td>
-      <td *ngIf="p.entregue&&p.pago">Sim</td>
-      <td *ngIf="!p.entregue||!p.pago">Não</td>
+      <td name="paidDelivered" *ngIf="p.entregue&&p.pago">Sim</td>
+      <td name="paidDelivered" *ngIf="!p.entregue||!p.pago">Não</td>
       <td *ngIf="p.cancelado">Sim</td>
       <td *ngIf="!p.cancelado">Não</td>
    </tr>

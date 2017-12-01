@@ -9,7 +9,7 @@ let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
 let sameClient = ((elem, client) => elem.element(by.name('client')).getText().then(text => text === client));
 let sameCode = ((elem, code) => elem.element(by.name('code')).getText().then(text => text === code));
-let sameAffirm = ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
+let sameText= ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
 let notpaid = ((elem) => elem.element(by.name('paid')).getAttribute('class').then(value => value === 'false'));
 let notdelivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'false'));
 let delivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
@@ -91,16 +91,18 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^eu vejo o pedido "(\d*)" no historico$/, async (code) => {
-        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        var all : ElementArrayFinder = element.all(by.name('historicoLista'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
-    Then(/^o pedido "(\d*)" estara marcado como entregue e pago com "Sim"$/, async (code, affirm) => {
-        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+    Then(/^o pedido "(\d*)" estara marcado como entregue e pago com "([^\"]*)"$/, async (code, text) => {
+        var all : ElementArrayFinder = element.all(by.name('historicoLista'));
         await all;
-        var samecode = all.filter((elem => sameCode(elem,code) && sameAffirm(elem,affirm)));
+        var samecode = all.filter((elem => sameCode(elem,code)));
+        await samecode;
+        samecode = all.filter((elem => sameText(elem,text)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 

@@ -18,6 +18,6 @@ And eu vejo o pedido "1" cadastrado ao cliente "Paulo" na lista de pendentes
 And o pedido "1" nao esta marcado como pago
 And o pedido "1" esta marcado como entregue
 When eu marcar o pedido "1" como pago
-Then eu vejo o pedido "1" no historico
-And eu nao vejo o pedido "1" na lista de pedidos pendentes
+Then eu nao vejo o pedido "1" na lista de pedidos pendentes
+And eu vejo o pedido "1" no historico
 And o pedido "1" estara marcado como entregue e pago com "Sim"

@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-#tabelaPendentes{
+#tabelaPendentes, #tabelaHistorico{
   width: 98%;
   margin: 1%;
   padding: 0;
@@ -21,11 +21,11 @@
   table-layout: fixed; 
 }
 
-#tabelaPendentes th{
+#tabelaPendentes th, #tabelaHistorico th{
   color: #fefefe;;
 }
 
-#tabelaPendentes td{
+#tabelaPendentes td, #tabelaHistorico td{
   width: 80%;
   margin: 10%;
   padding: 0;
