@@ -21,3 +21,15 @@ When eu marcar o pedido "1" como pago
 Then eu nao vejo o pedido "1" na lista de pedidos pendentes
 And eu vejo o pedido "1" no historico
 And o pedido "1" estara marcado como entregue e pago com "Sim"
+
+Scenario: Marcando um pedido apenas como pago e entregue
+Given eu tenho o pedido "2" cadastrado ao cliente "Maria"
+And eu estou na pagina de pedidos pendentes
+And eu vejo o pedido "2" cadastrado ao cliente "Maria" na lista de pendentes
+And o pedido "2" nao esta marcado como pago
+And o pedido "2" nao esta marcado como entregue
+When eu marcar o pedido "2" como pago
+When eu marcar o pedido "2" como entregue
+Then eu nao vejo o pedido "2" na lista de pedidos pendentes
+And eu vejo o pedido "2" no historico
+And o pedido "2" estara marcado como entregue e pago com "Sim"
